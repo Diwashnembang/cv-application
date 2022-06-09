@@ -5,7 +5,11 @@
     },
     "extends": [
         "plugin:react/recommended",
+<<<<<<< HEAD
         "airbnb"
+=======
+        "google"
+>>>>>>> 1bed598 (added linter)
     ],
     "parserOptions": {
         "ecmaFeatures": {
