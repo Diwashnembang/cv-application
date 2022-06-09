@@ -1,17 +1,17 @@
-import {Component} from 'react';
+/* eslint-disable require-jsdoc */
+import {React, Component} from 'react';
 
 
-class EducationInfo extends Component{
-  constructor(props){
+class EducationInfo extends Component {
+  constructor(props) {
     super(props);
-
   }
 
-  render(){
-    return(
-        <p>this is Education</p>
+  render() {
+    return (
+      <p>this is Education</p>
 
-    )
+    );
   }
 }
 
