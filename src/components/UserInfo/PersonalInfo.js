@@ -11,11 +11,13 @@ class PersonalInfo extends Component {
         firstName: 'first Name',
         lastName: 'last Name',
         address: 'Address',
+        contact: 'Number',
       },
     };
     this.handelFirstName=this.handelFirstName.bind(this);
     this.handelLastName=this.handelLastName.bind(this);
     this.handelAddress=this.handelAddress.bind(this);
+    this.handelContact=this.handelContact.bind(this);
   }
 
   #capitalize(sentence) {
@@ -24,7 +26,6 @@ class PersonalInfo extends Component {
     const temp = sentence.split(' ');
     for (let i = 0; i < temp.length; i += 1) {
       temp[i] = temp[i].charAt(0).toUpperCase() + temp[i].slice(1);
-      console.log(temp[i]);
     }
     let incompleteSentence = '';
     for (let i = 0; i < temp.length; i += 1) {
@@ -43,6 +44,7 @@ class PersonalInfo extends Component {
         firstName: e.target.value,
         lastName: this.state.info.lastName,
         address: this.state.info.address,
+        contact: this.state.info.contact,
       },
     });
   }
@@ -52,6 +54,7 @@ class PersonalInfo extends Component {
         firstName: this.state.info.firstName,
         lastName: e.target.value,
         address: this.state.info.address,
+        contact: this.state.info.contact,
 
       },
     });
@@ -63,6 +66,19 @@ class PersonalInfo extends Component {
         firstName: this.state.info.firstName,
         lastName: this.state.info.lastName,
         address: e.target.value,
+        contact: this.state.info.contact,
+      },
+    });
+  }
+
+  handelContact(e) {
+    this.setState({
+      info: {
+        firstName: this.state.info.firstName,
+        lastName: this.state.info.lastName,
+        address: this.state.info.address,
+        contact: (e.target.validity.valid) ?
+                e.target.value : this.state.info.contact,
       },
     });
   }
@@ -76,29 +92,56 @@ class PersonalInfo extends Component {
     </div>;
   }
 
+  getUserPhoto() {
+    return (
+      <div>
+        <input type="file" accept="image/png.image/jpg"></input>
+      </div>
+    );
+  }
   getUserAddress() {
     return <div>
       <label>Address</label>
       <input type="text" onChange={this.handelAddress}></input>
     </div>;
   }
+
+  getcontactNo() {
+    return (
+      <div>
+        <label>Contact</label>
+        <input type="number" onChange={this.handelContact}></input>
+      </div>
+    );
+  }
   wrokingMode() {
     return (<div>
       {this.getUserName()}
       {this.getUserAddress()};
+      {this.getcontactNo()};
+      {this.getUserPhoto()}
     </div>
     );
   }
   previewMode() {
-    return <div id="prsonalInfo">
+    return (
+      <div id="prsonalInfo">
+        <p>
+          {this.#capitalize(this.state.info.firstName)}
+          {this.#capitalize(this.state.info.lastName)}
+        </p>
 
-      {this.#capitalize(this.state.info.firstName)}
-      {this.#capitalize(this.state.info.lastName)}
-      <div>
+        <p>
 
-        {this.#capitalize(this.state.info.address)}
+          {this.#capitalize(this.state.info.address)}
+        </p>
+
+        <p>
+          {console.log(this.state.info.contact)}
+          {this.state.info.contact}
+        </p>
       </div>
-    </div>;
+    );
   }
   render() {
     return (
