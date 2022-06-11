@@ -7,18 +7,16 @@ import SkillsInfo from './getUserInfo/SkillsInfo';
 
 class WorkingArea extends PureComponent {
   render() {
-    const {
-      handelFirstName, handelLastName, handelAddress, handelContact, handelDescription, handelEmail,
-    } = this.props;
+    const { personalInfoUtility } = this.props;
     return (
       <div id="workingArea">
         <PersonalInfo
-          getFirstName={handelFirstName}
-          getLastName={handelLastName}
-          getEmail={handelEmail}
-          getAddress={handelAddress}
-          getContact={handelContact}
-          getDescription={handelDescription}
+          getFirstName={personalInfoUtility.handelFirstName}
+          getLastName={personalInfoUtility.handelLastName}
+          getEmail={personalInfoUtility.handelEmail}
+          getAddress={personalInfoUtility.handelAddress}
+          getContact={personalInfoUtility.handelContact}
+          getDescription={personalInfoUtility.handelDescription}
         />
 
         <EducationInfo />
@@ -31,12 +29,17 @@ class WorkingArea extends PureComponent {
 }
 
 WorkingArea.propTypes = {
-  handelFirstName: PropTypes.func.isRequired,
-  handelLastName: PropTypes.func.isRequired,
-  handelAddress: PropTypes.func.isRequired,
-  handelContact: PropTypes.func.isRequired,
-  handelEmail: PropTypes.func.isRequired,
-  handelDescription: PropTypes.func.isRequired,
+  personalInfoUtility: PropTypes.shape(
+    {
+      handelFirstName: PropTypes.func.isRequired,
+      handelLastName: PropTypes.func.isRequired,
+      handelAddress: PropTypes.func.isRequired,
+      handelContact: PropTypes.func.isRequired,
+      handelEmail: PropTypes.func.isRequired,
+      handelDescription: PropTypes.func.isRequired,
+    },
+  ).isRequired,
+
 };
 
 export default WorkingArea;

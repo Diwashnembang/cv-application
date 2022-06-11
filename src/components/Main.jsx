@@ -15,15 +15,10 @@ class Main extends Component {
         description: 'description',
       },
     };
-    this.handelFirstName = this.handelFirstName.bind(this);
-    this.handelLastName = this.handelLastName.bind(this);
-    this.handelAddress = this.handelAddress.bind(this);
-    this.handelContact = this.handelContact.bind(this);
-    this.handelEmail = this.handelEmail.bind(this);
-    this.handelDescription = this.handelDescription.bind(this);
   }
 
-  handelFirstName(e) {
+  // to avoid bindinding using
+  handelFirstName = (e) => {
     this.setState((previousState) => ({
       info: {
         firstName: e.target.value,
@@ -34,9 +29,9 @@ class Main extends Component {
         description: previousState.info.description,
       },
     }));
-  }
+  };
 
-  handelLastName(e) {
+  handelLastName = (e) => {
     this.setState((previousState) => ({
       info: {
         firstName: previousState.info.firstName,
@@ -47,9 +42,9 @@ class Main extends Component {
         description: previousState.info.description,
       },
     }));
-  }
+  };
 
-  handelAddress(e) {
+  handelAddress = (e) => {
     this.setState((previousState) => ({
       info: {
         firstName: previousState.info.firstName,
@@ -60,9 +55,9 @@ class Main extends Component {
         description: previousState.info.description,
       },
     }));
-  }
+  };
 
-  handelEmail(e) {
+  handelEmail = (e) => {
     this.setState((previousState) => ({
       info: {
         firstName: previousState.info.firstName,
@@ -73,9 +68,9 @@ class Main extends Component {
         description: previousState.info.description,
       },
     }));
-  }
+  };
 
-  handelContact(e) {
+  handelContact = (e) => {
     this.setState((previousState) => ({
       info: {
         firstName: previousState.info.firstName,
@@ -86,9 +81,9 @@ class Main extends Component {
         description: previousState.info.description,
       },
     }));
-  }
+  };
 
-  handelDescription(e) {
+  handelDescription = (e) => {
     this.setState((previousState) => ({
       info: {
         firstName: previousState.info.firstName,
@@ -99,20 +94,22 @@ class Main extends Component {
         description: e.target.value,
       },
     }));
-  }
+  };
 
   render() {
     const { info } = this.state;
-    console.log('this is from main', info);
+    const personalInfoFunc = {
+      handelFirstName: this.handelFirstName,
+      handelLastName: this.handelLastName,
+      handelAddress: this.handelAddress,
+      handelContact: this.handelContact,
+      handelEmail: this.handelEmail,
+      handelDescription: this.handelDescription,
+    };
     return (
       <div id="main">
         <WorkingArea
-          handelFirstName={this.handelFirstName}
-          handelLastName={this.handelLastName}
-          handelAddress={this.handelAddress}
-          handelContact={this.handelContact}
-          handelEmail={this.handelEmail}
-          handelDescription={this.handelDescription}
+          personalInfoUtility={personalInfoFunc}
         />
         <PreviewArea info={info} />
       </div>
