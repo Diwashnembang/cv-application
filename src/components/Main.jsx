@@ -1,12 +1,3 @@
-/*
-    main will be the parent of preview and working
-    its main task is to sync working and preview componet
-    it achives that by geting the data form working componet.
-    it gets data from working component when working componet runs the
-    update function of main.js which is passed as props to working component
-    then is pased the recived data to preview as a props.
-*/
-
 import React, { Component } from 'react';
 import WorkingArea from './WorkingArea';
 import PreviewArea from './PreviewArea';
@@ -21,23 +12,8 @@ class Main extends Component {
       },
     };
     this.handelFirstName = this.handelFirstName.bind(this);
-    // this.updateLastName = this.updateLastName.bind(this);
+    this.handelLastName = this.handelLastName.bind(this);
   }
-
-  // capitalize(sentence) {
-  //   if (typeof sentence !== 'string') return ('error');
-  //   let capitalizeSentence = '';
-  //   const temp = sentence.split(' ');
-  //   for (let i = 0; i < temp.length; i += 1) {
-  //     temp[i] = temp[i].charAt(0).toUpperCase() + temp[i].slice(1);
-  //   }
-  //   let incompleteSentence = '';
-  //   for (let i = 0; i < temp.length; i += 1) {
-  //     capitalizeSentence = `${incompleteSentence} ${temp[i]}`;
-  //     incompleteSentence = capitalizeSentence;
-  //   }
-  //   return capitalizeSentence;
-  // }
 
   handelFirstName(e) {
     this.setState((previousState) => ({
@@ -48,14 +24,23 @@ class Main extends Component {
     }));
   }
 
+  handelLastName(e) {
+    this.setState((previousState) => ({
+      info: {
+        firstName: previousState.info.firstName,
+        lastName: e.target.value,
+      },
+    }));
+  }
+
   render() {
     const { info } = this.state;
-
+    console.log("this is from main",info);
     return (
       <div id="main">
         <WorkingArea
           handelFirstName={this.handelFirstName}
-
+          handelLastName={this.handelLastName}
         />
         <PreviewArea info={info} />
       </div>

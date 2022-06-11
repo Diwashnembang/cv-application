@@ -8,12 +8,27 @@ class PreviewArea extends PureComponent {
     super(props);
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  capitalize(sentence) {
+    if (typeof sentence !== 'string') return ('error');
+    let capitalizeSentence = '';
+    const temp = sentence.split(' ');
+    for (let i = 0; i < temp.length; i += 1) {
+      temp[i] = temp[i].charAt(0).toUpperCase() + temp[i].slice(1);
+    }
+    let incompleteSentence = '';
+    for (let i = 0; i < temp.length; i += 1) {
+      capitalizeSentence = `${incompleteSentence} ${temp[i]}`;
+      incompleteSentence = capitalizeSentence;
+    }
+    return capitalizeSentence;
+  }
+
   render() {
     const { info } = this.props;
-   
     return (
       <div id="previewArea">
-        <PreviewPersonalInfo info={info} />
+        <PreviewPersonalInfo info={info} capitalize={this.capitalize} />
         <p>this is preview area</p>
       </div>
 

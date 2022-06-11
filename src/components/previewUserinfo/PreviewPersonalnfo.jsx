@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 
 class PreviewPersonalInfo extends PureComponent {
   render() {
-    const { info } = this.props;
-
+    const { info, capitalize } = this.props;
     return (
       <div>
-        <p>{info.firstName}</p>
-        <p>{info.lastName}</p>
+        <p>{capitalize(info.firstName)}</p>
+        <p>{capitalize(info.lastName)}</p>
       </div>
     );
   }
@@ -21,6 +20,7 @@ PreviewPersonalInfo.propTypes = {
       lastName: PropTypes.string.isRequired,
     },
   ).isRequired,
+  capitalize: PropTypes.func.isRequired,
 };
 
 export default PreviewPersonalInfo;

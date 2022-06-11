@@ -7,12 +7,12 @@ import SkillsInfo from './getUserInfo/SkillsInfo';
 
 class WorkingArea extends PureComponent {
   render() {
-    const { handelFirstName } = this.props;
-    console.log("this is from working Area",handelFirstName);
+    const { handelFirstName, handelLastName } = this.props;
     return (
       <div id="workingArea">
         <PersonalInfo
           getFirstName={handelFirstName}
+          getLastName={handelLastName}
         />
 
         <EducationInfo />
@@ -26,6 +26,7 @@ class WorkingArea extends PureComponent {
 
 WorkingArea.propTypes = {
   handelFirstName: PropTypes.func.isRequired,
+  handelLastName: PropTypes.func.isRequired,
 };
 
 export default WorkingArea;
