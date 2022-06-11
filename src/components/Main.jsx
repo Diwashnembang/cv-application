@@ -10,7 +10,7 @@ class Main extends Component {
         firstName: 'first Name',
         lastName: 'last Name',
         address: 'address',
-        contact: 'address',
+        contact: 'Contact',
         email: 'email',
         description: 'description',
       },
@@ -82,7 +82,7 @@ class Main extends Component {
         lastName: previousState.info.lastName,
         address: previousState.info.address,
         contact: e.target.value,
-        email: previousState.info.address,
+        email: previousState.info.email,
         description: previousState.info.description,
       },
     }));
