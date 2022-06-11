@@ -7,12 +7,18 @@ import SkillsInfo from './getUserInfo/SkillsInfo';
 
 class WorkingArea extends PureComponent {
   render() {
-    const { handelFirstName, handelLastName } = this.props;
+    const {
+      handelFirstName, handelLastName, handelAddress, handelContact, handelDescription, handelEmail,
+    } = this.props;
     return (
       <div id="workingArea">
         <PersonalInfo
           getFirstName={handelFirstName}
           getLastName={handelLastName}
+          getEmail={handelEmail}
+          getAddress={handelAddress}
+          getContact={handelContact}
+          getDescription={handelDescription}
         />
 
         <EducationInfo />
@@ -27,6 +33,10 @@ class WorkingArea extends PureComponent {
 WorkingArea.propTypes = {
   handelFirstName: PropTypes.func.isRequired,
   handelLastName: PropTypes.func.isRequired,
+  handelAddress: PropTypes.func.isRequired,
+  handelContact: PropTypes.func.isRequired,
+  handelEmail: PropTypes.func.isRequired,
+  handelDescription: PropTypes.func.isRequired,
 };
 
 export default WorkingArea;
