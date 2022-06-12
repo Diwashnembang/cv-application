@@ -6,7 +6,6 @@ class PersonalInfo extends PureComponent {
     const {
       getFirstName, getLastName, getAddress, getContact, getDescription, getEmail,
     } = this.props;
-    console.log('this is from presonalinfo', getLastName);
     return (
       <form id="userInfoForm">
         <section id="userName">

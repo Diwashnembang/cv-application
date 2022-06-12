@@ -7,7 +7,7 @@ import SkillsInfo from './getUserInfo/SkillsInfo';
 
 class WorkingArea extends PureComponent {
   render() {
-    const { personalInfoUtility } = this.props;
+    const { personalInfoUtility, careerInfoUtility } = this.props;
     return (
       <div id="workingArea">
         <PersonalInfo
@@ -19,8 +19,12 @@ class WorkingArea extends PureComponent {
           getDescription={personalInfoUtility.handelDescription}
         />
 
+        <CareerInfo
+          getPosition={careerInfoUtility.handelPositon}
+          getCareerHistory={careerInfoUtility.careerHistory}
+          addCareer={careerInfoUtility.addCareer}
+        />
         <EducationInfo />
-        <CareerInfo />
         <SkillsInfo />
       </div>
 
@@ -37,6 +41,18 @@ WorkingArea.propTypes = {
       handelContact: PropTypes.func.isRequired,
       handelEmail: PropTypes.func.isRequired,
       handelDescription: PropTypes.func.isRequired,
+    },
+  ).isRequired,
+  careerInfoUtility: PropTypes.shape(
+    {
+      handelPositon: PropTypes.func.isRequired,
+      careerHistory: PropTypes.array.isRequired,
+      addCareer: PropTypes.func.isRequired,
+      // handelLastName: PropTypes.func.isRequired,
+      // handelAddress: PropTypes.func.isRequired,
+      // handelContact: PropTypes.func.isRequired,
+      // handelEmail: PropTypes.func.isRequired,
+      // handelDescription: PropTypes.func.isRequired,
     },
   ).isRequired,
 

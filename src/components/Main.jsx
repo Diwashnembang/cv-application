@@ -1,10 +1,34 @@
 import React, { Component } from 'react';
+import uniqid from 'uniqid';
 import WorkingArea from './WorkingArea';
 import PreviewArea from './PreviewArea';
 
 class Main extends Component {
   constructor(props) {
     super(props);
+    this.career = {
+      id: uniqid(),
+      position: {
+        id: uniqid(),
+        text: 'Position',
+      },
+      company: {
+        id: uniqid(),
+        text: 'company',
+      },
+      city: {
+        id: uniqid(),
+        text: 'city',
+      },
+      from: {
+        id: uniqid(),
+        text: 'from',
+      },
+      to: {
+        id: uniqid(),
+        text: 'to',
+      },
+    };
     this.state = {
       info: {
         firstName: 'first Name',
@@ -14,6 +38,8 @@ class Main extends Component {
         email: 'email',
         description: 'description',
       },
+      career: {},
+      careerHistory: [this.career],
     };
   }
 
@@ -96,8 +122,52 @@ class Main extends Component {
     }));
   };
 
+  handelPositon = (e) => {
+    this.setState((previousState) => ({
+      career: {
+        position: e.target.value,
+        company: previousState.career.company,
+        city: previousState.career.company,
+        from: previousState.career.company,
+        to: previousState.career.company,
+      },
+      carrerHistory: previousState.carrerHistory.concat(previousState.career),
+    }));
+  };
+
+  addCareer = () => {
+    this.setState(() => ({
+      career: {
+        id: uniqid(),
+        position: {
+          id: uniqid(),
+          text: 'Position',
+        },
+        company: {
+          id: uniqid(),
+          text: 'company',
+        },
+        city: {
+          id: uniqid(),
+          text: 'city',
+        },
+        from: {
+          id: uniqid(),
+          text: 'from',
+        },
+        to: {
+          id: uniqid(),
+          text: 'to',
+        },
+      },
+    }));
+    this.setState((previousState) => ({
+      careerHistory: previousState.careerHistory.concat(previousState.career),
+    }));
+  };
+
   render() {
-    const { info } = this.state;
+    const { info, careerHistory } = this.state;
     const personalInfoFunc = {
       handelFirstName: this.handelFirstName,
       handelLastName: this.handelLastName,
@@ -106,10 +176,19 @@ class Main extends Component {
       handelEmail: this.handelEmail,
       handelDescription: this.handelDescription,
     };
+
+    const careerInfoUtility = {
+      handelPositon: this.handelPositon,
+      careerHistory,
+      addCareer: this.addCareer,
+    };
+    console.log(this.state.careerHistory);
+
     return (
       <div id="main">
         <WorkingArea
           personalInfoUtility={personalInfoFunc}
+          careerInfoUtility={careerInfoUtility}
         />
         <PreviewArea info={info} />
       </div>
