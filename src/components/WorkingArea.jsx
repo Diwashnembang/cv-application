@@ -20,7 +20,7 @@ class WorkingArea extends PureComponent {
         />
 
         <CareerInfo
-          getPosition={careerInfoUtility.handelPositon}
+          handelUpdateInArray={careerInfoUtility.handelUpdateInArray}
           getCareerHistory={careerInfoUtility.careerHistory}
           addCareer={careerInfoUtility.addCareer}
         />
@@ -45,7 +45,7 @@ WorkingArea.propTypes = {
   ).isRequired,
   careerInfoUtility: PropTypes.shape(
     {
-      handelPositon: PropTypes.func.isRequired,
+      handelUpdateInArray: PropTypes.func.isRequired,
       careerHistory: PropTypes.array.isRequired,
       addCareer: PropTypes.func.isRequired,
       // handelLastName: PropTypes.func.isRequired,

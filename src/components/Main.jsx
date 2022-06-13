@@ -122,13 +122,17 @@ class Main extends Component {
     }));
   };
 
-  handelPositon = (e, id) => {
+  handelUpdateInArray = (e, id, stateKey, toBeUpdated) => {
+    // eslint-disable-next-line react/destructuring-assignment
+    if (!this.state[stateKey]) console.warn('No key');
+    if (!this.state[stateKey][toBeUpdated]) console.warn('No upadate key');
+
     this.setState((previousState) => ({
-      careerHistory: previousState.careerHistory.map((career) => {
-        if (career.id === id) {
-          career.position.text = e.target.value;
+      [stateKey]: previousState[stateKey].map((key) => {
+        if (key.id === id) {
+          key[toBeUpdated].text = e.target.value;
         }
-        return career;
+        return key;
       }),
     }));
   };
@@ -176,7 +180,7 @@ class Main extends Component {
     };
 
     const careerInfoUtility = {
-      handelPositon: this.handelPositon,
+      handelUpdateInArray: this.handelUpdateInArray,
       careerHistory,
       addCareer: this.addCareer,
     };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class CareerInfo extends PureComponent {
   render() {
-    const { addCareer, getPosition, getCareerHistory } = this.props;
+    const { addCareer, handelUpdateInArray, getCareerHistory } = this.props;
     return (
       <div>
         <ul>
@@ -17,16 +17,59 @@ class CareerInfo extends PureComponent {
                     name="position"
                     id="position"
                     onChange={(e) => {
-                     
-                      getPosition(e,career.id);
+                      handelUpdateInArray(e, career.id, 'careerHistory', 'position');
                     }}
                   />
                 </label>
               </li>
-              <li key={career.company.id}><input placeholder={career.company.text} type="text" name="position" id="position" /></li>
-              <li key={career.city.id}><input placeholder={career.city.text} type="text" name="position" id="position" /></li>
-              <li key={career.from.id}><input placeholder={career.from.text} type="text" name="position" id="position" /></li>
-              <li key={career.to.id}><input placeholder={career.to.text} type="text" name="position" id="position" /></li>
+              <li key={career.company.id}>
+                <input
+                  placeholder={career.company.text}
+                  type="text"
+                  name="position"
+                  id="position"
+                  onChange={(e) => {
+                    handelUpdateInArray(e, career.id, 'careerHistory', 'company');
+                  }}
+                />
+
+              </li>
+              <li key={career.city.id}>
+                <input
+                  placeholder={career.city.text}
+                  type="text"
+                  name="position"
+                  id="position"
+                  onChange={(e) => {
+                    handelUpdateInArray(e, career.id, 'careerHistory', 'city');
+                  }}
+                />
+
+              </li>
+              <li key={career.from.id}>
+                <input
+                  placeholder={career.from.text}
+                  type="text"
+                  name="position"
+                  id="position"
+                  onChange={(e) => {
+                    handelUpdateInArray(e, career.id, 'careerHistory', 'from');
+                  }}
+                />
+
+              </li>
+              <li key={career.to.id}>
+                <input
+                  placeholder={career.to.text}
+                  type="text"
+                  name="position"
+                  id="position"
+                  onChange={(e) => {
+                    handelUpdateInArray(e, career.id, 'careerHistory', 'to');
+                  }}
+                />
+
+              </li>
             </div>
           ))}
         </ul>
@@ -39,7 +82,7 @@ class CareerInfo extends PureComponent {
 
 CareerInfo.proptype = {
 
-  getPosition: PropTypes.func.isRequired,
+  handelUpdateInArray: PropTypes.func.isRequired,
   getCareerHistory: PropTypes.array.isRequired,
   addCareer: PropTypes.func.isRequired,
   // handelLastName: PropTypes.func.isRequired,
