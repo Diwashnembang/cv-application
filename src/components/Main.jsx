@@ -122,16 +122,14 @@ class Main extends Component {
     }));
   };
 
-  handelPositon = (e) => {
+  handelPositon = (e, id) => {
     this.setState((previousState) => ({
-      career: {
-        position: e.target.value,
-        company: previousState.career.company,
-        city: previousState.career.company,
-        from: previousState.career.company,
-        to: previousState.career.company,
-      },
-      carrerHistory: previousState.carrerHistory.concat(previousState.career),
+      careerHistory: previousState.careerHistory.map((career) => {
+        if (career.id === id) {
+          career.position.text = e.target.value;
+        }
+        return career;
+      }),
     }));
   };
 
@@ -182,7 +180,6 @@ class Main extends Component {
       careerHistory,
       addCareer: this.addCareer,
     };
-    console.log(this.state.careerHistory);
 
     return (
       <div id="main">
@@ -190,7 +187,7 @@ class Main extends Component {
           personalInfoUtility={personalInfoFunc}
           careerInfoUtility={careerInfoUtility}
         />
-        <PreviewArea info={info} />
+        <PreviewArea info={info} careerHistory={careerHistory} />
       </div>
     );
   }

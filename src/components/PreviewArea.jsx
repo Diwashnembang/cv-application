@@ -1,13 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import PreviewPersonalInfo from './previewUserinfo/PreviewPersonalnfo';
+import PreviewCareerInfo from './previewUserinfo/PreviewCareerInfo';
 
 class PreviewArea extends PureComponent {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props) {
-    super(props);
-  }
-
   // eslint-disable-next-line class-methods-use-this
   capitalize(sentence) {
     if (typeof sentence !== 'string') return ('error');
@@ -25,11 +21,12 @@ class PreviewArea extends PureComponent {
   }
 
   render() {
-    const { info } = this.props;
+    const { info, careerHistory } = this.props;
+ 
     return (
       <div id="previewArea">
         <PreviewPersonalInfo info={info} capitalize={this.capitalize} />
-        <p>this is preview area</p>
+        <PreviewCareerInfo careerHistory={careerHistory} />
       </div>
 
     );
@@ -43,6 +40,7 @@ PreviewArea.propTypes = {
       lastName: PropTypes.string.isRequired,
     },
   ).isRequired,
+  careerHistory: PropTypes.array.isRequired,
 };
 
 export default PreviewArea;
