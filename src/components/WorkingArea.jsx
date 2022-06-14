@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import CareerInfo from './getUserInfo/CareerInfo';
 import EducationInfo from './getUserInfo/EducationInfo';
 import PersonalInfo from './getUserInfo/PersonalInfo';
-import SkillsInfo from './getUserInfo/SkillsInfo';
 
 class WorkingArea extends PureComponent {
   render() {
-    const { personalInfoUtility, careerInfoUtility } = this.props;
-    console.log(careerInfoUtility)
+    const { personalInfoUtility, careerInfoUtility, educationInfoUtility } = this.props;
     return (
       <div id="workingArea">
         <PersonalInfo
@@ -26,8 +24,13 @@ class WorkingArea extends PureComponent {
           addCareer={careerInfoUtility.addCareer}
           handelDeletInArray={careerInfoUtility.handelDeletInArray}
         />
-        <EducationInfo />
-        <SkillsInfo />
+        <EducationInfo
+          handelDeletInArray={educationInfoUtility.handelDeletInArray}
+          handelUpdateInArray={educationInfoUtility.handelUpdateInArray}
+          addEducation={educationInfoUtility.addEducation}
+          getEducationHistory={educationInfoUtility.educationHistory}
+
+        />
       </div>
 
     );
@@ -54,7 +57,7 @@ WorkingArea.propTypes = {
           {
             id: PropTypes.string.isRequired,
             text: PropTypes.string.isRequired,
-          }
+          },
         ),
         company: PropTypes.shape(
           {
@@ -86,6 +89,26 @@ WorkingArea.propTypes = {
     },
   ).isRequired,
 
+  educationInfoUtility: PropTypes.shape({
+    educationHistory: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      university: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      }),
+      degree: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      }),
+      city: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      }),
+    })).isRequired,
+    handelDeletInArray: PropTypes.func.isRequired,
+    handelUpdateInArray: PropTypes.func.isRequired,
+    addEducation: PropTypes.func.isRequired,
+  }).isRequired,
 
 };
 

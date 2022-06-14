@@ -29,6 +29,21 @@ class Main extends Component {
         text: 'to',
       },
     };
+    this.education = {
+      id: uniqid(),
+      university: {
+        id: uniqid(),
+        text: 'universityi name',
+      },
+      degree: {
+        id: uniqid(),
+        text: 'Degree',
+      },
+      city: {
+        id: uniqid(),
+        text: 'city',
+      },
+    };
     this.state = {
       info: {
         firstName: 'first Name',
@@ -40,6 +55,8 @@ class Main extends Component {
       },
       career: {},
       careerHistory: [this.career],
+      education: {},
+      educationHistory: [this.education],
     };
   }
 
@@ -125,11 +142,13 @@ class Main extends Component {
   handelUpdateInArray = (e, id, stateKey, toBeUpdated) => {
     // eslint-disable-next-line react/destructuring-assignment
     if (!this.state[stateKey]) console.warn('No key');
+    // eslint-disable-next-line react/destructuring-assignment
     if (!this.state[stateKey][toBeUpdated]) console.warn('No upadate key');
 
     this.setState((previousState) => ({
       [stateKey]: previousState[stateKey].map((key) => {
         if (key.id === id) {
+          // eslint-disable-next-line no-param-reassign
           key[toBeUpdated].text = e.target.value;
         }
         return key;
@@ -138,11 +157,12 @@ class Main extends Component {
   };
 
   handelDeletInArray = (e, id, stateKey) => {
-    console.log('inn')
+    // eslint-disable-next-line react/destructuring-assignment
     if (!this.state[stateKey]) console.warn('No key');
     this.setState((previouState) => ({
       [stateKey]: previouState[stateKey].filter((key) => {
         if (key.id === id) return;
+        // eslint-disable-next-line consistent-return
         return key;
       }),
     }));
@@ -179,8 +199,31 @@ class Main extends Component {
     }));
   };
 
+  addEducation = () => {
+    this.setState(() => ({
+      education: {
+        id: uniqid(),
+        university: {
+          id: uniqid(),
+          text: 'universityi name',
+        },
+        degree: {
+          id: uniqid(),
+          text: 'Degree',
+        },
+        city: {
+          id: uniqid(),
+          text: 'city',
+        },
+      },
+    }));
+    this.setState((previousState) => ({
+      educationHistory: previousState.educationHistory.concat(previousState.education),
+    }));
+  };
+
   render() {
-    const { info, careerHistory } = this.state;
+    const { info, careerHistory, educationHistory } = this.state;
     const personalInfoFunc = {
       handelFirstName: this.handelFirstName,
       handelLastName: this.handelLastName,
@@ -197,13 +240,25 @@ class Main extends Component {
       handelDeletInArray: this.handelDeletInArray,
     };
 
+    const educationInfoUtility = {
+      handelUpdateInArray: this.handelUpdateInArray,
+      handelDeletInArray: this.handelDeletInArray,
+      addEducation: this.addEducation,
+      educationHistory,
+    };
+
     return (
       <div id="main">
         <WorkingArea
           personalInfoUtility={personalInfoFunc}
           careerInfoUtility={careerInfoUtility}
+          educationInfoUtility={educationInfoUtility}
         />
-        <PreviewArea info={info} careerHistory={careerHistory} />
+        <PreviewArea
+          info={info}
+          careerHistory={careerHistory}
+          educationHistory={educationHistory}
+        />
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import PreviewPersonalInfo from './previewUserinfo/PreviewPersonalnfo';
 import PreviewCareerInfo from './previewUserinfo/PreviewCareerInfo';
+import PreviewEducationInfo from './previewUserinfo/PreviewEducationInfo';
 
 class PreviewArea extends PureComponent {
   // eslint-disable-next-line class-methods-use-this
@@ -21,12 +22,13 @@ class PreviewArea extends PureComponent {
   }
 
   render() {
-    const { info, careerHistory } = this.props;
+    const { info, careerHistory, educationHistory } = this.props;
 
     return (
       <div id="previewArea">
         <PreviewPersonalInfo info={info} capitalize={this.capitalize} />
         <PreviewCareerInfo careerHistory={careerHistory} capitalize={this.capitalize} />
+        <PreviewEducationInfo educationHistory={educationHistory} capitalize={this.capitalize} />
       </div>
 
     );
@@ -72,6 +74,21 @@ PreviewArea.propTypes = {
         text: PropTypes.string.isRequired,
       },
     ),
+  })).isRequired,
+  educationHistory: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    university: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    }),
+    degree: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    }),
+    city: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    }),
   })).isRequired,
 };
 
