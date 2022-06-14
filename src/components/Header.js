@@ -1,17 +1,16 @@
-import {Component} from 'react';
+import { Component } from 'react';
 
-class Header extends Component{
-  constructor(props){
+class Header extends Component {
+  constructor(props) {
     super(props);
-
   }
 
-  render(){
-    return(
-        <div id="header">
-            <h1>CV Generator</h1>
-        </div>
-    )
+  render() {
+    return (
+      <div id="header">
+        <h1>CV Generator</h1>
+      </div>
+    );
   }
 }
 

@@ -2,7 +2,25 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
+<<<<<<< HEAD
     "eslint.validate": [
         "javascript"
+=======
+<<<<<<< HEAD
+    "eslint.options": {
+        "extensions": [
+            ".jsx",
+            ".js"
+        ]
+    },
+    "eslint.validate": [
+        "javascript",
+        "jsx",
+        "javascriptreact"
+=======
+    "eslint.validate": [
+        "javascript"
+>>>>>>> 1bed598 (added linter)
+>>>>>>> old-project-state
     ]
 }
