@@ -22,11 +22,11 @@ class PreviewArea extends PureComponent {
 
   render() {
     const { info, careerHistory } = this.props;
- 
+
     return (
       <div id="previewArea">
         <PreviewPersonalInfo info={info} capitalize={this.capitalize} />
-        <PreviewCareerInfo careerHistory={careerHistory} />
+        <PreviewCareerInfo careerHistory={careerHistory} capitalize={this.capitalize} />
       </div>
 
     );
@@ -40,7 +40,39 @@ PreviewArea.propTypes = {
       lastName: PropTypes.string.isRequired,
     },
   ).isRequired,
-  careerHistory: PropTypes.array.isRequired,
+  careerHistory: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    position: PropTypes.shape(
+      {
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      },
+    ),
+    company: PropTypes.shape(
+      {
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      },
+    ),
+    city: PropTypes.shape(
+      {
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      },
+    ),
+    from: PropTypes.shape(
+      {
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      },
+    ),
+    to: PropTypes.shape(
+      {
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      },
+    ),
+  })).isRequired,
 };
 
 export default PreviewArea;

@@ -6,17 +6,14 @@ class PreviewPersonalInfo extends PureComponent {
     const { info, capitalize } = this.props;
     return (
       <div>
-        <h1>
-          <p>
-            {capitalize(info.firstName)}
-            {capitalize(info.lastName)}
-          </p>
-          <p>{capitalize(info.address)}</p>
-          <p>{capitalize(info.contact)}</p>
-          <p>{capitalize(info.email)}</p>
-          <p>{capitalize(info.description)}</p>
-        </h1>
-
+        <p>
+          {capitalize(info.firstName)}
+          {capitalize(info.lastName)}
+        </p>
+        <p>{capitalize(info.address)}</p>
+        <p>{capitalize(info.contact)}</p>
+        <p>{capitalize(info.email)}</p>
+        <p>{capitalize(info.description)}</p>
       </div>
     );
   }

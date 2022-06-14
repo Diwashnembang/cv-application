@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import uniqid from 'uniqid';
 
 class CareerInfo extends PureComponent {
   render() {
-    const { addCareer, handelUpdateInArray, getCareerHistory } = this.props;
+    const {
+      addCareer, handelUpdateInArray, getCareerHistory, handelDeletInArray,
+    } = this.props;
     return (
       <div>
         <ul>
@@ -70,6 +73,16 @@ class CareerInfo extends PureComponent {
                 />
 
               </li>
+              <button
+                key={uniqid()}
+                type="button"
+                onClick={(e) => {
+                  handelDeletInArray(e, career.id, 'careerHistory');
+                }}
+              >
+                Delet
+
+              </button>
             </div>
           ))}
         </ul>
@@ -80,16 +93,45 @@ class CareerInfo extends PureComponent {
   }
 }
 
-CareerInfo.proptype = {
+CareerInfo.propTypes = {
 
   handelUpdateInArray: PropTypes.func.isRequired,
-  getCareerHistory: PropTypes.array.isRequired,
+  getCareerHistory: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    position: PropTypes.shape(
+      {
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      },
+    ),
+    company: PropTypes.shape(
+      {
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      },
+    ),
+    city: PropTypes.shape(
+      {
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      },
+    ),
+    from: PropTypes.shape(
+      {
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      },
+    ),
+    to: PropTypes.shape(
+      {
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+      },
+    ),
+  })).isRequired,
   addCareer: PropTypes.func.isRequired,
-  // handelLastName: PropTypes.func.isRequired,
-  // handelAddress: PropTypes.func.isRequired,
-  // handelContact: PropTypes.func.isRequired,
-  // handelEmail: PropTypes.func.isRequired,
-  // handelDescription: PropTypes.func.isRequired,
+  handelDeletInArray: PropTypes.func.isRequired,
+
 };
 
 export default CareerInfo;

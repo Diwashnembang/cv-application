@@ -137,6 +137,17 @@ class Main extends Component {
     }));
   };
 
+  handelDeletInArray = (e, id, stateKey) => {
+    console.log('inn')
+    if (!this.state[stateKey]) console.warn('No key');
+    this.setState((previouState) => ({
+      [stateKey]: previouState[stateKey].filter((key) => {
+        if (key.id === id) return;
+        return key;
+      }),
+    }));
+  };
+
   addCareer = () => {
     this.setState(() => ({
       career: {
@@ -183,6 +194,7 @@ class Main extends Component {
       handelUpdateInArray: this.handelUpdateInArray,
       careerHistory,
       addCareer: this.addCareer,
+      handelDeletInArray: this.handelDeletInArray,
     };
 
     return (
