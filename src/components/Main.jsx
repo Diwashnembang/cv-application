@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import uniqid from 'uniqid';
+import { Flex, VStack } from '@chakra-ui/react';
 import WorkingArea from './WorkingArea';
 import PreviewArea from './PreviewArea';
 
@@ -249,16 +250,18 @@ class Main extends Component {
 
     return (
       <div id="main">
-        <WorkingArea
-          personalInfoUtility={personalInfoFunc}
-          careerInfoUtility={careerInfoUtility}
-          educationInfoUtility={educationInfoUtility}
-        />
-        <PreviewArea
-          info={info}
-          careerHistory={careerHistory}
-          educationHistory={educationHistory}
-        />
+        <Flex h="100vh" py={20} bg="gray.50">
+          <WorkingArea
+            personalInfoUtility={personalInfoFunc}
+            careerInfoUtility={careerInfoUtility}
+            educationInfoUtility={educationInfoUtility}
+          />
+          <PreviewArea
+            info={info}
+            careerHistory={careerHistory}
+            educationHistory={educationHistory}
+          />
+        </Flex>
       </div>
     );
   }
