@@ -1,4 +1,7 @@
 import React, { PureComponent } from 'react';
+import {
+  SimpleGrid, GridItem, FormControl, FormLabel, Input, Textarea, FormHelperText,
+} from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
 class PersonalInfo extends PureComponent {
@@ -7,47 +10,48 @@ class PersonalInfo extends PureComponent {
       getFirstName, getLastName, getAddress, getContact, getDescription, getEmail,
     } = this.props;
     return (
-      <form id="userInfoForm">
-        <section id="userName">
-          <label htmlFor="userFirstName">
-            First Name
-            <input type="text" name="firstName" id="userFirstName" onChange={getFirstName} />
-          </label>
 
-          <label htmlFor="userLastName">
-            Last Name
-            <input type="text" name="lastName" id="userLastName" onChange={getLastName} />
-          </label>
-        </section>
-        <section id="userAddress">
+      <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full" px={10}>
+        <FormControl>
+          <GridItem colSpan={1}>
+            <FormLabel> First Name</FormLabel>
+            <Input type="text" name="firstName" id="userFirstName" onChange={getFirstName} />
+          </GridItem>
+        </FormControl>
+        <GridItem colSpan={1}>
+          <FormControl>
+            <FormLabel> Last Name</FormLabel>
+            <Input type="text" name="lastName" id="userLastName" onChange={getLastName} />
+          </FormControl>
+        </GridItem>
+        <GridItem colSpan={2}>
+          <FormControl>
+            <FormLabel>Address</FormLabel>
+            <Input type="text" name="Address" id="userAddress" onChange={getAddress} />
+          </FormControl>
+        </GridItem>
+        <GridItem colSpan={2}>
+          <FormControl>
+            <FormLabel>Email</FormLabel>
+            <Input type="email" name="Email" id="userEmail" onChange={getEmail} />
+          </FormControl>
+        </GridItem>
+        <GridItem colSpan={2}>
+          <FormControl>
+            <FormLabel>Contact</FormLabel>
+            <Input type="number" name="Contact" id="userContact" onChange={getContact} />
+            <FormHelperText>Contact Must Be Number</FormHelperText>
+          </FormControl>
+        </GridItem>
 
-          <label htmlFor="userAddress">
-            Address
-            <input type="text" name="Address" id="userAddress" onChange={getAddress} />
-          </label>
-        </section>
-        <section id="userEmail">
-          <label htmlFor="userEmail">
-            Email
-            <input type="email" name="Email" id="userEmail" onChange={getEmail} />
-          </label>
-        </section>
-        <section id="userContact">
-          <label htmlFor="userContact">
-            Contact
-            <input type="number" name="Contact" id="userContact" onChange={getContact} />
-          </label>
+        <GridItem colSpan={2}>
+          <FormControl>
+            <FormLabel>Description</FormLabel>
+            <Textarea name="Description" id="userDescription" resize="none" size="lg" onChange={getDescription} />
+          </FormControl>
+        </GridItem>
+      </SimpleGrid>
 
-        </section>
-        <section id="userDescription">
-          <label htmlFor="userDescription">
-            Description
-            <textarea name="Description" id="userDescription" onChange={getDescription} />
-          </label>
-
-        </section>
-
-      </form>
     );
   }
 }

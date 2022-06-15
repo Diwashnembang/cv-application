@@ -1,6 +1,9 @@
 import { React, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import uniqid from 'uniqid';
+import {
+  FormControl, FormLabel, GridItem, Input, SimpleGrid, Button, Container, UnorderedList, Spacer,
+} from '@chakra-ui/react';
 
 class EducationInfo extends PureComponent {
   render() {
@@ -8,13 +11,25 @@ class EducationInfo extends PureComponent {
       getEducationHistory, addEducation, handelDeletInArray, handelUpdateInArray,
     } = this.props;
     return (
-      <div>
-        <ul>
+      <Container
+        w="full"
+        mt={5}
+
+      >
+        <UnorderedList p={0} m={0}>
           {getEducationHistory.map((education) => (
-            <div key={education.id} data-key={education.id}>
-              <li key={education.university.id}>
-                <label htmlFor="University-Name">
-                  <input
+            <SimpleGrid
+              columns={2}
+              columnGap={3}
+              rowGap={6}
+              w="full"
+              key={education.id}
+              data-key={education.id}
+            >
+              <GridItem key={education.university.id} colSpan={2}>
+                <FormControl>
+                  <FormLabel>University</FormLabel>
+                  <Input
                     placeholder={education.university.text}
                     type="text"
                     name="universityName"
@@ -22,45 +37,56 @@ class EducationInfo extends PureComponent {
                       handelUpdateInArray(e, education.id, 'educationHistory', 'university');
                     }}
                   />
-                </label>
-              </li>
+                </FormControl>
 
-              <li key={education.city.id}>
-                <input
-                  placeholder={education.city.text}
-                  type="text"
-                  name="cityi"
-                  onChange={(e) => {
-                    handelUpdateInArray(e, education.id, 'educationHistory', 'city');
+              </GridItem>
+
+              <GridItem key={education.city.id} colSpan={2}>
+                <FormControl>
+                  <FormLabel>City</FormLabel>
+                  <Input
+                    placeholder={education.city.text}
+                    type="text"
+                    name="cityi"
+                    onChange={(e) => {
+                      handelUpdateInArray(e, education.id, 'educationHistory', 'city');
+                    }}
+                  />
+                </FormControl>
+              </GridItem>
+
+              <GridItem key={education.degree.id} colSpan={2}>
+                <FormControl>
+                  <FormLabel>Degree</FormLabel>
+                  <Input
+                    placeholder={education.degree.text}
+                    type="text"
+                    onChange={(e) => {
+                      handelUpdateInArray(e, education.id, 'educationHistory', 'degree');
+                    }}
+                  />
+                </FormControl>
+
+              </GridItem>
+              <GridItem key={uniqid()} colSpan={2}>
+                <Button
+                  type=" button "
+                  onClick={(e) => {
+                    handelDeletInArray(e, education.id, 'educationHistory');
                   }}
-                />
-              </li>
+                >
+                  Delet
 
-              <li key={education.degree.id}>
-                <input
-                  placeholder={education.degree.text}
-                  type="text"
-                  onChange={(e) => {
-                    handelUpdateInArray(e, education.id, 'educationHistory', 'degree');
-                  }}
-                />
+                </Button>
+              </GridItem>
 
-              </li>
-              <button
-                key={uniqid()}
-                type="button"
-                onClick={(e) => {
-                  handelDeletInArray(e, education.id, 'educationHistory');
-                }}
-              >
-                Delet
-
-              </button>
-            </div>
+            </SimpleGrid>
           ))}
-        </ul>
-        <button type="button" onClick={addEducation}>Add More</button>
-      </div>
+        </UnorderedList>
+
+        <Button type="button" onClick={addEducation} mt={9}>Add More</Button>
+
+      </Container>
 
     );
   }

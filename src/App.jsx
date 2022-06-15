@@ -1,15 +1,18 @@
 import React, { PureComponent } from 'react';
-import './App.css';
+import { Box, Container } from '@chakra-ui/react';
 import Header from './components/Header';
 import Main from './components/Main';
 
 class App extends PureComponent {
   render() {
     return (
-      <div>
+      <Box bg="blackAlpha.200">
         <Header />
-        <Main />
-      </div>
+        <Container maxW="8xl">
+          <Main />
+        </Container>
+      </Box>
+
     );
   }
 }
