@@ -250,7 +250,7 @@ class Main extends Component {
 
     return (
       <div id="main">
-        <Flex h="100vh" py={20} bg="gray.50">
+        <Flex h="full" py={[5, 10, 20]} bg="whiteAlpha.600" flexWrap="wrap">
           <WorkingArea
             personalInfoUtility={personalInfoFunc}
             careerInfoUtility={careerInfoUtility}

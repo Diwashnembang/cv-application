@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import uniqid from 'uniqid';
+import {
+  Button, FormControl, FormLabel, GridItem, Input, SimpleGrid, UnorderedList,
+} from '@chakra-ui/react';
 
 class CareerInfo extends PureComponent {
   render() {
@@ -9,11 +12,20 @@ class CareerInfo extends PureComponent {
     } = this.props;
     return (
       <div>
-        <ul>
+        <UnorderedList p={0} m={0}>
           {getCareerHistory.map((career) => (
-            <div key={career.id} data-key={career.id}>
-              <li key={career.position.id}>
-                <label htmlFor="postion">
+            <SimpleGrid
+              columns={2}
+              columnGap={3}
+              rowGap={6}
+              w="full"
+              p={10}
+              key={career.id}
+              data-key={career.id}
+            >
+              <GridItem key={career.position.id} colSpan={2}>
+                <FormControl>
+                  <FormLabel>Position</FormLabel>
                   <input
                     placeholder={career.position.text}
                     type="text"
@@ -23,70 +35,83 @@ class CareerInfo extends PureComponent {
                       handelUpdateInArray(e, career.id, 'careerHistory', 'position');
                     }}
                   />
-                </label>
-              </li>
-              <li key={career.company.id}>
-                <input
-                  placeholder={career.company.text}
-                  type="text"
-                  name="position"
-                  id="position"
-                  onChange={(e) => {
-                    handelUpdateInArray(e, career.id, 'careerHistory', 'company');
+                </FormControl>
+              </GridItem>
+              <GridItem key={career.company.id} colSpan={2}>
+                <FormControl>
+                  <FormLabel>Company</FormLabel>
+                  <input
+                    placeholder={career.company.text}
+                    type="text"
+                    name="position"
+                    id="position"
+                    onChange={(e) => {
+                      handelUpdateInArray(e, career.id, 'careerHistory', 'company');
+                    }}
+                  />
+                </FormControl>
+
+              </GridItem>
+              <GridItem key={career.city.id} colSpan={2}>
+                <FormControl>
+                  <FormLabel>City</FormLabel>
+                  <Input
+                    placeholder={career.city.text}
+                    type="text"
+                    name="position"
+                    id="position"
+                    onChange={(e) => {
+                      handelUpdateInArray(e, career.id, 'careerHistory', 'city');
+                    }}
+                  />
+                </FormControl>
+
+              </GridItem>
+              <GridItem key={career.from.id} colSpan={2}>
+                <FormControl>
+                  <FormLabel>From</FormLabel>
+                  <Input
+                    placeholder={career.from.text}
+                    type="text"
+                    name="position"
+                    id="position"
+                    onChange={(e) => {
+                      handelUpdateInArray(e, career.id, 'careerHistory', 'from');
+                    }}
+                  />
+                </FormControl>
+
+              </GridItem>
+              <GridItem key={career.to.id} colSpan={2}>
+                <FormControl>
+                  <FormLabel>To</FormLabel>
+                  <Input
+                    placeholder={career.to.text}
+                    type="text"
+                    name="position"
+                    id="position"
+                    onChange={(e) => {
+                      handelUpdateInArray(e, career.id, 'careerHistory', 'to');
+                    }}
+                  />
+                </FormControl>
+
+              </GridItem>
+              <GridItem key={uniqid()} colSpan={2}>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    handelDeletInArray(e, career.id, 'careerHistory');
                   }}
-                />
+                >
+                  Delet
 
-              </li>
-              <li key={career.city.id}>
-                <input
-                  placeholder={career.city.text}
-                  type="text"
-                  name="position"
-                  id="position"
-                  onChange={(e) => {
-                    handelUpdateInArray(e, career.id, 'careerHistory', 'city');
-                  }}
-                />
-
-              </li>
-              <li key={career.from.id}>
-                <input
-                  placeholder={career.from.text}
-                  type="text"
-                  name="position"
-                  id="position"
-                  onChange={(e) => {
-                    handelUpdateInArray(e, career.id, 'careerHistory', 'from');
-                  }}
-                />
-
-              </li>
-              <li key={career.to.id}>
-                <input
-                  placeholder={career.to.text}
-                  type="text"
-                  name="position"
-                  id="position"
-                  onChange={(e) => {
-                    handelUpdateInArray(e, career.id, 'careerHistory', 'to');
-                  }}
-                />
-
-              </li>
-              <button
-                key={uniqid()}
-                type="button"
-                onClick={(e) => {
-                  handelDeletInArray(e, career.id, 'careerHistory');
-                }}
-              >
-                Delet
-
-              </button>
-            </div>
+                </button>
+              </GridItem>
+            </SimpleGrid>
           ))}
-        </ul>
-        <button type="button" onClick={addCareer}>Add More</button>
+        </UnorderedList>
+        <Button p={10} type="button" onClick={addCareer}>Add More</Button>
       </div>
 
     );
